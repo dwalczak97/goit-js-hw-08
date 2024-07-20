@@ -63,3 +63,17 @@ const images = [
     description: "Lighthouse Coast Sea",
   },
 ];
+
+const element = document.querySelector(".gallery");
+const fragment = document.createDocumentFragment();
+const elementLi = document.createElement("li");
+elementLi.classList.add("gallery-item");
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
+element.append(elementLi);
