@@ -64,8 +64,13 @@ const images = [
   },
 ];
 
-const galleryUl = document.querySelector(".gallery");
+const element = document.querySelector("ul.gallery");
 const fragment = document.createDocumentFragment();
-const elemLi = document.createElement("li");
-elemLi.classList.add("gallery-item");
-galleryUl.append(elementLi);
+
+// const elemOne = document.createElement("li");
+// elemOne.forEach((one) => {
+//   elemOne.classList.add("gallery-item");
+//   element.append(elementOne);
+// });
+
+const createLi = document.createElement("li");
