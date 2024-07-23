@@ -84,22 +84,14 @@ images.forEach((image) => {
 });
 element.appendChild(fragment);
 
-const light = basicLightbox.create(
+const modal = basicLightbox.create(
   `    <div class="modal-on">
         <div class="modalPhoto">
-          <img width="1112" height="640" src="https://placehold.it/1112x640">
+          <img src="assets/images/image.png" width="800" height="600">
         </div>
-    </div>`,
-  {
-    onShow: () => console.log("Opened"),
-  }
+    </div>`
 );
-element.addEventListener("click", light.show);
 
-document.addEventListener("keydown", closeModal);
+element.addEventListener("click", modal.show);
 
-function closeModal(event) {
-  if (event.keyCode === 27) {
-    instance.close();
-  }
-}
+document.addEventListener("keydown", modal.close);
