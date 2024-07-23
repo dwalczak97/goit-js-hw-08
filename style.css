@@ -1,0 +1,27 @@
+body {
+  width: 1440px;
+  height: 696px;
+  top: 204px;
+  background-color: #ffffff;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 0 auto;
+  width: 1128px;
+}
+.gallery-item {
+}
+.gallery-image {
+  width: 360px;
+  height: 200px;
+}
+.gallery-image:hover {
+  transform: scale(1.04);
+}

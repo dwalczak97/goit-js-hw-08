@@ -64,13 +64,50 @@ const images = [
   },
 ];
 
-const element = document.querySelector("ul.gallery");
+const element = document.querySelector(".gallery");
 const fragment = document.createDocumentFragment();
+element.addEventListener("click", openModal);
 
-// const elemOne = document.createElement("li");
-// elemOne.forEach((one) => {
-//   elemOne.classList.add("gallery-item");
-//   element.append(elementOne);
-// });
+images.forEach((image) => {
+  const createLi = document.createElement("li");
+  createLi.classList = "gallery-item";
+  const liA = document.createElement("a");
+  liA.classList = "gallery-link";
+  liA.href = image.original;
+  createLi.appendChild(liA);
+  const galleryImage = document.createElement("img");
+  galleryImage.classList = "gallery-image";
+  galleryImage.src = image.preview;
+  galleryImage.alt = image.description;
+  galleryImage.dataset.source = image.original;
+  liA.appendChild(galleryImage);
+  fragment.appendChild(createLi);
+});
+element.appendChild(fragment);
 
-const createLi = document.createElement("li");
+const instance = basicLightbox.create(`
+    <div class="modal">
+        <div class="modalPhoto">
+          <img width="1112" height="640" src="https://placehold.it/1112x640">
+        </div>
+    </div>
+`);
+
+function openModal(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const currentImage = event.target.dataset.source;
+  instance.element().querySelector("img").src = currentImage;
+  instance.show();
+}
+
+// ESC do close
+document.addEventListener("keydown", closeModal);
+
+function closeModal(event) {
+  if (event.keyCode == 27) {
+    instance.close();
+  }
+}
