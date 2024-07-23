@@ -66,7 +66,6 @@ const images = [
 
 const element = document.querySelector(".gallery");
 const fragment = document.createDocumentFragment();
-element.addEventListener("click", openModal);
 
 images.forEach((image) => {
   const createLi = document.createElement("li");
@@ -85,29 +84,22 @@ images.forEach((image) => {
 });
 element.appendChild(fragment);
 
-const instance = basicLightbox.create(`
-    <div class="modal">
+const light = basicLightbox.create(
+  `    <div class="modal-on">
         <div class="modalPhoto">
           <img width="1112" height="640" src="https://placehold.it/1112x640">
         </div>
-    </div>
-`);
-
-function openModal(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
+    </div>`,
+  {
+    onShow: () => console.log("Opened"),
   }
-  const currentImage = event.target.dataset.source;
-  instance.element().querySelector("img").src = currentImage;
-  instance.show();
-}
+);
+element.addEventListener("click", light.show);
 
-// ESC do close
 document.addEventListener("keydown", closeModal);
 
 function closeModal(event) {
-  if (event.keyCode == 27) {
+  if (event.keyCode === 27) {
     instance.close();
   }
 }
