@@ -87,7 +87,7 @@ element.appendChild(fragment);
 const modal = basicLightbox.create(
   `    <div class="modal-on">
         <div class="modalPhoto">
-          <img src="assets/images/image.png" width="800" height="600">
+          <img width="1112" height="640" src="https://placehold.it/1112x640">
         </div>
     </div>`
 );
