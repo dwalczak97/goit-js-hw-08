@@ -83,15 +83,29 @@ images.forEach((image) => {
   fragment.appendChild(createLi);
 });
 element.appendChild(fragment);
+element.addEventListener("click", openModal);
 
-const modal = basicLightbox.create(
-  `    <div class="modal-on">
+const instance = basicLightbox.create(`
+    <div class="modal">
         <div class="modalPhoto">
           <img width="1112" height="640" src="https://placehold.it/1112x640">
         </div>
-    </div>`
-);
+    </div>
+`);
+function openModal(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const currentImage = event.target.dataset.source;
+  instance.element().querySelector("img").src = currentImage;
+  instance.show();
+}
 
-element.addEventListener("click", modal.show);
+document.addEventListener("keydown", closeModal);
 
-document.addEventListener("keydown", modal.close);
+function closeModal(event) {
+  if (event.keyCode == 27) {
+    instance.close();
+  }
+}
